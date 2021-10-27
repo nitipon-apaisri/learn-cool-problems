@@ -6,19 +6,17 @@
 # https://github.com/actions/labeler
 
 name: Label issues
-on: [issues]
+on:
+  issues:
+    types: [opened]
 
 jobs:
-  label: 
-
+  automate-issues-labels: 
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write
-
     steps:
-    - uses: actions/labeler@v2
-      with:
-        add-labels: "needs-triage"
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: initial labeling
+        uses: andymckay/labeler@master
+        with:
+          add-labels: "needs-triage, bug"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
         
