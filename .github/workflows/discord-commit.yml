@@ -3,17 +3,13 @@ name: Discord notification
 on: [push]
 
 jobs:
-    discord-send-message:
+    notify:
+        name: Discord Notification
         runs-on: ubuntu-latest
-        name: Discord Commits
         steps:
-            - name: Checkout 🛎️
-              uses: actions/checkout@v2.3.1
-
-            - name: Send message to Discord
-              uses: Sniddl/discord-commits@v1.3
+            - name: Checkout
+              uses: actions/checkout@v2
+            - uses: fateyan/action-discord-notifier@v1
               with:
-                  webhook: ${{ https://discord.com/api/webhooks/903585403032993822/YaktXODM34gj5KzLY1R6jR2H1bEHdcyvhuN8B5tUoMOJ9Hbi_deKvdqN3iHFgPpuaF05 }}
-                  message:
-                      "Successful commit to **{{ github.context.payload.repository.owner.name }}/{{ github.context.payload.repository.name}}**.\nDiff: {{ github.context.payload.compare }}"
-                  embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
+                  message-title: New Commits Pushed
+                  webhook: https://discord.com/api/webhooks/903585403032993822/YaktXODM34gj5KzLY1R6jR2H1bEHdcyvhuN8B5tUoMOJ9Hbi_deKvdqN3iHFgPpuaF05
