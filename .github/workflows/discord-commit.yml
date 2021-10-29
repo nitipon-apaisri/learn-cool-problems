@@ -13,7 +13,7 @@ jobs:
             - name: Send message to Discord
               uses: Sniddl/discord-commits@v1.3
               with:
-                  webhook: ${{ secrets.DISCORD_WEBHOOK }}
+                  webhook: ${{ https://discord.com/api/webhooks/903585403032993822/YaktXODM34gj5KzLY1R6jR2H1bEHdcyvhuN8B5tUoMOJ9Hbi_deKvdqN3iHFgPpuaF05 }}
                   message:
                       "Successful commit to **{{ github.context.payload.repository.owner.name }}/{{ github.context.payload.repository.name}}**.\nDiff: {{ github.context.payload.compare }}"
                   embed: '{ "title": "{{ commit.title }}", "description": "{{ commit.description }}", "url": "{{ commit.url }}", "author": { "name": "{{ commit.author.name }} ({{ commit.author.username }})", "icon_url": "https://avatars.io/gravatar/{{ commit.author.email }}"} }'
